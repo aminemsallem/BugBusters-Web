@@ -1,0 +1,14 @@
+{
+  "entrypoints": {
+    "app": {
+      "js": [
+        "http://localhost:8080/build/runtime.js",
+        "http://localhost:8080/build/vendors-node_modules_nouislider_distribute_nouislider_css-node_modules_nouislider_distribute_-36a0e1.js",
+        "http://localhost:8080/build/app.js"
+      ],
+      "css": [
+        "http://localhost:8080/build/app.css"
+      ]
+    }
+  }
+}

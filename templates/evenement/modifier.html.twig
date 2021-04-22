@@ -1,0 +1,22 @@
+{% extends 'back.html.twig' %}
+
+
+{% block content %}
+    <div class="container">
+    <center>
+        <h1>Modifier evenement</h1>
+
+    {{ form_start(form,{'attr': {'novalidate': 'novalidate'}} ) }}
+    {{ form(form) }}
+
+    </center>
+        <style>
+            h1 {
+                background: linear-gradient(to right, #36ecde, #000000);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+        </style>
+    </div>
+
+{% endblock %}

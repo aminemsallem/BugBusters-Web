@@ -1,0 +1,113 @@
+{% extends 'front.html.twig' %}
+{% block content %}
+<!-- Header -->
+<header id="head">
+    <div class="container">
+        <div class="row">
+            <h1 class="lead">FORMATIONS</h1>
+            <p class="tagline">se former autrement !</p>
+        </div>
+    </div>
+</header>
+
+
+<!-- /Header -->
+<!-- Intro -->
+<br>
+<!-- Offres-->
+<body>
+    {% block title %}les evenemenets!{% endblock %}
+
+    <h1>Information de nos evenements</h1>
+
+    <div class="container">
+        <div class="row">
+            <div class="col col-sm ">
+            </div>
+            <div class="col col-sm ">
+                <input type="text" id="search" class="form-control" placeholder="Search">
+            </div>
+            <div class="col col-sm ">
+            </div>
+        </div>
+        </br>
+    </div>
+<div class="container">
+
+    <table style="margin-left: 200px;" border="2" CELLPADDING="4" CELLSPACING="4" WIDTH="70%"class=" table-dark">
+
+
+        <thead>
+        <tr>
+            <th>nom</th>
+            <th>debut</th>
+            <th>fin</th>
+            <th>nbparticipant</th>
+            <th>image</th>
+
+        </tr>
+
+
+
+        </thead>
+        <tbody>
+
+        {% for evenement  in evenements %}
+
+            <tr>
+
+                <td>{{ evenement.nom}}</td>
+                <td>{{ evenement.datedebut |date("m/d/Y") }}</td>
+                <td>{{ evenement.datefin |date("m/d/Y") }}</td>
+                <td>{{ evenement.nbrparticipant }}</td>
+                <td><img height="100px" width="100px" src="{{ asset('uploads/images/') }}{{evenement.image}}"></td>
+
+
+
+
+
+
+
+                <td> <a  href="{{  path("deleteevenement",{"id":evenement.id}) }}" class="btn btn-outline-danger" role="button" aria-pressed="true">Suprimer</a></td>
+                <td> <a href="{{ path("updateevenement",{"id":evenement.id}) }}" class="btn btn-outline-warning" role="button" aria-pressed="true">Modifier</a></td>
+
+            </tr>
+
+        {% endfor %}
+        </tbody>
+
+
+
+
+
+
+
+
+    </table>
+
+
+
+<!-- /.container -->
+<!-- /Offres-->
+<!-- Counter Area Start-->
+<section class="counter-section section-padding">
+    <div class="container">
+        <div class="row">
+
+            <!-- Counter Item -->
+
+            <!-- Counter Item -->
+            <div class="col-lg-3 col-md-6 col-sm-12 work-counter-widget">
+                <div class="counter wow fadeInDown" data-wow-delay="0.9s">
+                    <div class="icon"><i class="lni-cup"></i></div>
+                    <div class="counterUp">2</div>
+                    <p>Nos evenemenet</p>
+                </div>
+            </div>
+            <!-- Counter Item -->
+
+        </div>
+    </div>
+</section>
+<!-- /test-->
+{%endblock  %}
