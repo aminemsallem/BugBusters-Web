@@ -26,4 +26,14 @@ class TemplateController extends AbstractController
             'controller_name' => 'TemplateController',
         ]);
     }
+
+    /**
+     * @Route("/front", name="front")
+     */
+    public function front(): Response
+    {
+        return $this->render('content1.html.twig', [
+            'controller_name' => 'TemplateController',
+        ]);
+    }
 }

@@ -4,7 +4,7 @@
 namespace App\Data;
 
 
-use App\Entity\Categories;
+use App\Entity\Categorie;
 
 class SearchData
 {
@@ -19,22 +19,9 @@ class SearchData
     public $q = '';
 
     /**
-     * @var Categories[]
+     * @var Categorie[]
      */
     public $categories = [];
 
-    /**
-     * @var null|integer
-     */
-    public $max;
 
-    /**
-     * @var null|integer
-     */
-    public $min;
-
-    /**
-     * @var boolean
-     */
-    public $promo = false;
 }

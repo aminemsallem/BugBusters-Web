@@ -1,7 +1,7 @@
 {% block head %}
 <html lang="en">
 <head>
-    <title>BugBusters</title>
+    <title>Bugbusters</title>
     <meta charset="utf-8">
     <meta name="viewport"    content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
@@ -12,6 +12,7 @@
     <link rel="stylesheet" media="screen" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
     <link rel="stylesheet" href="{{asset ('assets/css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset ('assets/css/font-awesome.min.css')}}">
+
 
     <!-- Custom styles for our template -->
     <link rel="stylesheet" href="{{asset ('assets/css/bootstrap-theme.css')}}" media="screen" >
@@ -58,8 +59,8 @@
                 <ul class="nav navbar-nav pull-right">
                     <li class="active"><a href="#">Home</a></li>
                     <li><a href="about.html">About</a></li>
-                    <li><a href="{{ path("frontevenement") }}">Evenement</a></li>
 
+                    <li><a href="{{ path("AfficherEvenementFront") }}">Evenement</a></li>
                     <li><a href="contact.html">Contact</a></li>
                     <li><a class="btn" href="signin.html">SIGN IN / SIGN UP</a></li>
                 </ul>
@@ -78,10 +79,10 @@
             <div class="wrapper clearfix">
                 <!-- AddThis Button BEGIN -->
                 <div class="addthis_toolbox addthis_default_style">
-                    <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+                    <a class="addthis_button_facebook_like" :like:layout="button_count"></a>
                     <a class="addthis_button_tweet"></a>
                     <a class="addthis_button_linkedin_counter"></a>
-                    <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+                    <a class="addthis_button_google_plusone" :plusone:size="medium"></a>
                 </div>
                 <!-- AddThis Button END -->
             </div>
@@ -103,7 +104,7 @@
                     <h3 class="widget-title">Contact</h3>
                     <div class="widget-body">
                         <p>+234 23 9873237<br>
-                            <a href="mailto:#">some.email@somewhere.com</a><br>
+                            <a href="mailto:#">bugbusters@esprit.tn</a><br>
                             <br>
                             234 Hidden Pond Road, Ashland City, TN 37015
                         </p>
@@ -183,5 +184,7 @@
 <script src="{{asset ('assets1/js/jquery.easing.min.js')}}"></script>
 <script src="{{asset ('assets1/js/jquery.slicknav.js')}}"></script>
 <script src="{{asset ('assets1/js/main.js')}}"></script>
-<!-- Include Flashy default partial -->
+
 {{ include('@MercurySeriesFlashy/flashy.html.twig') }}
+<!-- Include Flashy default partial -->
+

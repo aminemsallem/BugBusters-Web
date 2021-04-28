@@ -1,0 +1,141 @@
+{% extends 'front.html.twig' %}
+
+{% block content %}
+
+    <!-- Header -->
+    <header id="head">
+        <div class="container">
+            <div class="row">
+                <h1 class="lead">EVENEMENT</h1>
+                <p class="tagline">Art is a style of living</p>
+            </div>
+        </div>
+    </header>
+
+
+    <!-- /Header -->
+    <!-- Intro -->
+    <br>
+    <!-- Offres-->
+
+
+
+
+
+
+
+
+    <div class="col-lg-4 col-md-6 mb-4">
+        <div class="card h-100">
+            <a href="#"><img height="250px" width="250px" src="{{ asset('uploads/images/') }}{{evenement.image}}"> </a>
+            <div class="card-body">
+                <h4 class="card-title">
+                    <a href="#">{{evenement.nom }}</a>
+                </h4>
+                <h5>le nombre de participants :</h5>
+                <p>{{evenement.nbrparticipant}}</p>
+
+
+                <h5>la date de debut de l'evenement  :</h5>
+
+
+                <p>{{ evenement.datedebut |date("m/d/Y") }}</p>
+
+                <h5>la date fin de l'evenement  :</h5>
+
+
+                <p>{{ evenement.datefin |date("m/d/Y") }}</p>
+
+                <h5>l'evenement est dans la categorie  :</h5>
+
+
+                <p>{{ evenement.categories }}</p>
+
+
+
+
+
+
+
+
+
+            </div>
+            <div class="card-footer">
+                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+            </div>
+        </div>
+    </div>
+
+
+
+    </div>
+
+    </div>
+
+    </div>
+
+    </div>
+
+
+
+
+    <!-- /.row -->
+
+
+
+
+    <br>
+    </div>
+    <!-- /.container -->
+    <!-- /Offres-->
+    <!-- Counter Area Start-->
+    <section class="counter-section section-padding">
+        <div class="container">
+            <div class="row">
+
+                <!-- Counter Item -->
+
+                <!-- Counter Item -->
+
+                <!-- Counter Item -->
+
+            </div>
+        </div>
+    </section>
+
+    {{ form_start(comment) }}
+    <div   class="input-group">
+
+        {{ form_widget(comment.body ) }}
+    </div>
+    <br>
+
+    {{ form_widget(comment.commenter, { 'attr' : { 'class' : 'appsLand-btn subscribe-btn ' } } ) }}
+
+
+
+    {{ form_end(comment) }}
+    </div>
+
+    <h1>Les commentaires :</h1>
+    {% for comment in evenement.commentaires %}
+        <div style="width: 850px;" class="card h-250">
+            <h4>{{ comment.body }}</h4>
+            <h8>{{ comment.date|date("Y-m-d H:i:s") }}</h8>
+
+
+        </div>
+
+    {% endfor %}
+
+
+
+
+
+
+
+
+
+
+{% endblock %}
+

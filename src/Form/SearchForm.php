@@ -3,8 +3,8 @@
 
 namespace App\Form;
 use App\Data\SearchData;
-use App\Entity\Categories;
-use App\Entity\Formation;
+use App\Entity\Categorie;
+use App\Entity\Evenement;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -30,29 +30,12 @@ class SearchForm extends AbstractType
             ->add('categories', EntityType::class, [
                 'label' => false,
                 'required' => false,
-                'class' => Categories::class,
+                'class' => Categorie::class,
                 'expanded' => true,
                 'multiple' => true,
 
             ])
-            ->add('min', NumberType::class, [
-                'label' => false,
-                'required' => false,
-                'attr' => [
-                    'placeholder' => 'Prix min'
-                ]
-            ])
-            ->add('max', NumberType::class, [
-                'label' => false,
-                'required' => false,
-                'attr' => [
-                    'placeholder' => 'Prix max'
-                ]
-            ])
-            ->add('promo', CheckboxType::class, [
-                'label' => 'En promotion',
-                'required' => false,
-            ])
+
         ;
     }
 

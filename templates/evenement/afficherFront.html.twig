@@ -1,0 +1,154 @@
+{% extends 'front.html.twig' %}
+{% block content %}
+    <!-- Header -->
+    <header id="head">
+        <div class="container">
+            <div class="row">
+                <h1 class="lead">EVENEMENTS</h1>
+                <p class="tagline">Art is a style of living</p>
+            </div>
+        </div>
+    </header>
+
+
+    <!-- /Header -->
+    <!-- Intro -->
+    <br>
+    <!-- Offres-->
+    <body>
+
+
+<div class="row">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="col-md-6" style="display: block; position: sticky; top: 70px">
+                    {{ form_start(form, {attr: {class: 'filter js-filter-form'}}) }}
+
+                    <div class="spinner-border js-loading" role="status" aria-hidden="true" style="display: none">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                    <h4>Recherche</h4>
+                    {{ form_row(form.q) }}
+
+                    <br>
+                    <h4>Catégories</h4>
+                    <div >
+                        {{ form_widget(form.categories) }}
+
+
+                    </div>
+
+                    <button type="submit" class="btn btn-primary w-100" style="margin-left: 40px">Filtrer</button>
+
+
+                    {{ form_end(form) }}
+                </div>
+            </div>
+            <div>
+                <div class="col-md-9">
+
+                    <div>
+                        <div class="d-flex justify-content-end mb-2">
+
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+                    {% for evenement  in evenement %}
+                        <div class="col-lg-4 col-md-6 mb-4">
+                            <div class="card h-100">
+                                <a href="#"><img height="250px" width="250px" src="{{ asset('uploads/images/') }}{{evenement.image}}"alt="..." class="img-circle profile_img"> </a>
+                                <div class="card-body">
+                                    <h4 class="card-title">
+                                        <a href="#">{{evenement.nom }}</a>
+                                    </h4>
+                                    <h5>le nombre de participants :</h5>
+                                    <p>{{evenement.nbrparticipant}}</p>
+
+
+                                    <h5>la date de debut de l'evenement  :</h5>
+
+
+                                    <p>{{ evenement.datedebut |date("m/d/Y") }}</p>
+
+                                    <h5>la date fin de l'evenement  :</h5>
+
+
+                                    <p>{{ evenement.datefin |date("m/d/Y") }}</p>
+
+                                    <h5>l'evenement est dans la categorie  :</h5>
+
+
+                                    <p>{{ evenement.categories }}</p>
+                                    <img src="{{ asset('uploads/images/') }}{{ evenement.id }}{{ evenement.nom ~'.png' }}" height="100px" width="100px"/>
+
+
+                                    <a href="{{ path("commentaire",{"id":evenement.id}) }}"class="btn btn-primary btn-lg btn-block">Details</a>
+
+
+
+
+
+
+
+
+                                </div>
+                                <div class="card-footer">
+                                    <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+
+
+                </div>
+
+            </div>
+
+        </div>
+        <div class="pagination">
+            {{knp_pagination_render(evenement)}}
+        </div>
+    </div>
+
+
+
+
+    <!-- /.row -->
+
+
+
+
+    <br>
+</div>
+<!-- /.container -->
+<!-- /Offres-->
+<!-- Counter Area Start-->
+<section class="counter-section section-padding">
+    <div class="container">
+        <div class="row">
+
+            <!-- Counter Item -->
+
+            <!-- Counter Item -->
+            <div class="col-lg-3 col-md-6 col-sm-12 work-counter-widget">
+                <div class="counter wow fadeInDown" data-wow-delay="0.9s">
+                    <div class="icon"><i class="lni-cup"></i></div>
+                    <div class="counterUp">150</div>
+                    <p>Nos evenements</p>
+                </div>
+            </div>
+            <!-- Counter Item -->
+
+        </div>
+    </div>
+</section>
+<!-- /test-->
+{% endblock %}

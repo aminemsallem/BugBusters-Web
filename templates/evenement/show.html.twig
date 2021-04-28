@@ -1,12 +1,20 @@
 {% extends 'back.html.twig' %}
 
-
 {% block content %}
+
+
     <center>
 
     {% block title %}les evenemenets!{% endblock %}
 
     <h1>Information de nos evenements</h1>
+    <style>
+        h1 {
+            background: linear-gradient(to right, #36ecde, #000);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
 
     <div class="container">
         <div class="row">
@@ -27,18 +35,19 @@
 
     <thead>
     <tr>
-        <th>nom</th>
-        <th>debut</th>
-        <th>fin</th>
-        <th>nbparticipant</th>
-        <th>image</th>
+        <th>Nom</th>
+        <th>Date Debut</th>
+        <th>Date Fin</th>
+        <th>Nombre De Participants</th>
+        <th>Image</th>
+        <th>categorie</th>
 
     </tr>
 
 
 
     </thead>
-    <tbody>
+    <tbody id="tableEvenement">
 
     {% for evenement  in evenements %}
 
@@ -48,9 +57,16 @@
             <td>{{ evenement.datedebut |date("m/d/Y") }}</td>
             <td>{{ evenement.datefin |date("m/d/Y") }}</td>
             <td>{{ evenement.nbrparticipant }}</td>
-            <td><img height="100px" width="100px" src="{{ asset('uploads/images/') }}{{evenement.image}}"></td>
+
+            <td><img height="120px" width="120px" src="{{ asset('uploads/images/') }}{{evenement.image}}"alt="..." class="img-circle profile_img"></td>
+
+            <td>
 
 
+                {{ evenement.getCategories().getNomC() }}
+
+
+            </td>
 
 
 
@@ -61,7 +77,24 @@
 
         </tr>
 
+
     {% endfor %}
+     <a href="{{ path("pdp") }}" class="btn btn-outline-warning" role="button" aria-pressed="true">Imprimer</a>
+
+
+    </tbody>
+
+
+
+
+
+
+
+    <tbody id="searchTTT">
+
+
+
+
     </tbody>
 
 
@@ -72,7 +105,59 @@
 
 
 </table>
+    </div>
     <br>
     <td> <a href="{{ path("ajoutevenement") }}" class="btn btn-outline-success" role="button" aria-pressed="true" >Ajouter</a></td>
 
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+    </script>
+    <script>
+        $( document ).ready(function() {
+            $("#search").keyup(function(e){
+                /* La variable value va prendre la valeur insérer dans le champ de texte afin d’effectuer la recherche */
+                var value = $(this).val();
+                $.ajax({
+                    /* l’url est une chaine de caractères contenant l’adresse où la requête est envoyée */
+                    url : "{{ path('searchevenement') }}",
+                    /* La méthode utilisée pour transférer les données est GET */
+                    type : 'GET',
+                    /*Ici search value va prendre la chaine entrée par un utilisateur dans la zone de recherche et sera placée après l’url */
+                    data: {
+                        'searchValue' : value
+                    },
+                    /*Cette fonction permet de vider le contenu du tableau pour recevoir le nouveau contenu*/
+                    success : function(retour){
+                        if(retour){
+                            $('#searchTTT').empty();
+                            $.each(JSON.parse(retour), function(i, obj) {
+
+                                var unixTimestamp = obj.dateDebut.timestamp;
+                                var unixTimestamp1 = obj.dateFin.timestamp;
+
+
+                                var milliseconds = unixTimestamp * 1000 // 1575909015000
+                                var milliseconds1 = unixTimestamp1 * 1000 // 1575909015000
+
+
+                                var current_date = new Date(milliseconds).toLocaleDateString('en-US', {year: 'numeric', month: '2-digit', day: '2-digit'});
+                                var current_date1 = new Date(milliseconds1).toLocaleDateString('en-US', {year: 'numeric', month: '2-digit', day: '2-digit'});
+
+                                $('#tableEvenement').hide();
+                                $('#searchTTT').append('<tr><td> '+obj.nom+'  </td><td> '+current_date+'  </td><td> '+current_date1+'</td><td>'+obj.nbrParticipant+' </td><td><img height="120px" width="120px" src="/uploads/images/'+obj.image+'"alt="..." class="img-circle profile_img"> </td><td> '+""+'  </td><td><a class="btn btn-outline-warning" href="updateevenement/'+obj.id+'">modifier</a> <a class="btn btn-outline-danger" href="deleteevenement/'+obj.id+'">supprimer</a></td></tr>');
+                               // $('#searchTTT').append('<tr><td> '+obj.nom+'  </td><td> '+current_date+'  </td><td> '+obj.prix+'  </td><td>    '+obj.nbrPartricipant+'  </td><td>'+obj.nbrHeures+' </td><td><img height="70px" width="100px" src="/uploads/images/'+obj.image+'"></td> <td><a class="btn btn-outline-warning" href="modifierformation/'+obj.id+'">modifier</a> <a class="btn btn-outline-danger" href="suprimerformation/'+obj.id+'">supprimer</a></td></tr>');
+                            });
+                        }
+                        else
+                        {
+                            $('#tableEvenement').show();
+                            $('#searchTTT').empty();
+                            $('#searchTTT').fadeIn('fast');
+                        }
+                    },
+                });
+                return false;
+            });
+        });
+    </script>
 {% endblock %}

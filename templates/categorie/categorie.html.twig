@@ -1,0 +1,73 @@
+{% extends 'back.html.twig' %}
+
+{% block content %}
+    <center>
+
+
+    <h1>Information de nos categories</h1>
+
+    <div class="container">
+
+
+
+        <table style="margin-left: 200px;" border="2"CELLPADDING="4" CELLSPACING="4" WIDTH="70%"class=" table-dark">
+            <thead>
+            <tr>
+                <th>nom categorie</th>
+                <th>nom evenement</th>
+
+
+            </tr>
+
+            </thead>
+
+            {% for categorie  in categorie %}
+                <tbody>
+
+                <tr>
+                    <td>{{ categorie.nomC }}</td>
+
+                    <td>
+                        {% for e in categorie.evenements %}
+
+                            {{ e.nom  }}
+                        {% endfor %}
+
+                    </td>
+
+                    <td> <a href="{{ path("modifiercategorie",{"id":categorie.id}) }}" class="btn btn-outline-warning" role="button" aria-pressed="true">Modifier</a></td>
+
+                    <td> <a href="{{  path("suprimercategorie",{"id":categorie.id}) }}" class="btn btn-outline-danger" role="button" aria-pressed="true">Suprimer</a></td>
+                </tr>
+
+                </tbody>
+
+            {% endfor %}
+
+
+
+
+
+
+
+
+
+        </table>
+    </div>
+    <br />
+
+    <td> <a href="{{ path("ajoutercategories") }}" class="btn btn-outline-success" role="button" aria-pressed="true">Ajouter</a></td>
+
+    <style>
+        h1 {
+            background: linear-gradient(to right, #36ecde, #000);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+
+
+
+
+
+{% endblock %}
